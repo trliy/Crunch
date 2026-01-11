@@ -1,4 +1,4 @@
-# Crunch! - Music Streaming Addon
+# Crunch - Music Streaming Addon
 
 ![Crunch Logo](https://files.catbox.moe/kftzeo.png)
 
@@ -55,7 +55,11 @@ The following environment variables can be configured:
 - `DATABASE_URL`: PostgreSQL connection string (required).
 - `PORT`: Port to run the server on (default: 5000).
 
-## License
+# Why did I choose the name Crunch as the project?
+
+Fairly simple, the name Crunch was chosen because it’s short, memorable, and carries the feeling of action and energy. Just like the addon itself “crunches” through the work of finding and serving music streams quickly, the name suggests speed, efficiency, and impact. It’s simple, techy, and fun without all of the fluff added.
+
+It’s the kind of name that sticks in your head, just like a good song.
 
 # Released under MIT License
 
