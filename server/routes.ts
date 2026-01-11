@@ -54,11 +54,6 @@ const manifest = {
   icon: "https://files.catbox.moe/kftzeo.png",
   resources: ["catalog", "meta", "stream"],
   types: ["music"],
-  "stremioAddonsConfig": {
-    "issuer": "https://stremio-addons.net",
-    "signature": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..4z7TVf298AqHp7IhVdwh-g.Tt990flc1tvH0_ciRm0bvG-JlUYS_nhPv-aZxJbkCqd10Th8_7yFsWr8ypPIHjlgANpvI6Vp1iGcGx8zz4lAWZ1o-v7hU5rUzTpZeNVOBUPkRJJF_nAmCJPImKducs_C.3vG2D6tFaM-MkXY2_Y7VeQ"
-  }
-}
   catalogs: [
     {
       type: "music",
