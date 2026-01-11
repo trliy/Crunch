@@ -50,8 +50,8 @@ const manifest = {
   version: "1.0.0",
   name: "Crunch",
   description: "Crunch is a lightweight Stremio addon for discovering and streaming user-uploaded music. It provides search, track metadata, and audio playback through a minimal install flow.",
-  logo: "https://files.catbox.moe/kftzeo.png", 
-  icon: "https://files.catbox.moe/kftzeo.png",
+  logo: "https://files.catbox.moe/xe084e.png", 
+  icon: "https://files.catbox.moe/xe084e.png",
   resources: ["catalog", "meta", "stream"],
   types: ["music"],
   catalogs: [
@@ -62,7 +62,11 @@ const manifest = {
       extra: [{ name: "search", isRequired: true }]
     }
   ],
-  idPrefixes: ["sc:"]
+  idPrefixes: ["sc:"],
+  stremioAddonsConfig: {
+    issuer: "https://stremio-addons.net",
+    signature: "eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2In0..4z7TVf298AqHp7IhVdwh-g.Tt990flc1tvH0_ciRm0bvG-JlUYS_nhPv-aZxJbkCqd10Th8_7yFsWr8ypPIHjlgANpvI6Vp1iGcGx8zz4lAWZ1o-v7hU5rUzTpZeNVOBUPkRJJF_nAmCJPImKducs_C.3vG2D6tFaM-MkXY2_Y7VeQ"
+  }
 };
 
 const builder = new addonBuilder(manifest);
