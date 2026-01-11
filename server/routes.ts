@@ -56,7 +56,7 @@ const manifest = {
   types: ["Music"],
   catalogs: [
     {
-      type: "Music",
+      type: "music",
       id: "crunch_search",
       name: "Crunch Search",
       extra: [{ name: "search", isRequired: true }]
