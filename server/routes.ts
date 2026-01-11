@@ -53,10 +53,10 @@ const manifest = {
   logo: "https://files.catbox.moe/kftzeo.png", 
   icon: "https://files.catbox.moe/kftzeo.png",
   resources: ["catalog", "meta", "stream"],
-  types: ["music"],
+  types: ["Music"],
   catalogs: [
     {
-      type: "music",
+      type: "Music",
       id: "crunch_search",
       name: "Crunch Search",
       extra: [{ name: "search", isRequired: true }]
