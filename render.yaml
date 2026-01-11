@@ -2,6 +2,7 @@ services:
   - type: web
     name: stremio-crunch-addon
     env: node
+    plan: free
     buildCommand: npm install && npm run build
     startCommand: npm start
     envVars:
@@ -14,5 +15,6 @@ services:
 
 databases:
   - name: stremio-crunch-db
+    plan: free
     databaseName: stremiocrunch
     user: stremiocrunch
