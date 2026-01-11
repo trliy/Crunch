@@ -74,7 +74,7 @@ async function searchTracks(query: string) {
   if (!clientId) return [];
   const cacheKey = `search:${query}`;
   const cached = await storage.getCache(cacheKey);
-  if (cached) return cached;
+  if (cached) return cached.data;
 
   try {
     const response = await axios.get(`${SC_API_BASE}/search/tracks`, {
@@ -94,7 +94,7 @@ async function getTrack(id: string) {
   if (!clientId) return null;
   const cacheKey = `track:${id}`;
   const cached = await storage.getCache(cacheKey);
-  if (cached) return cached;
+  if (cached) return cached.data;
 
   try {
     const response = await axios.get(`${SC_API_BASE}/tracks/${id}`, {
@@ -135,17 +135,17 @@ builder.defineCatalogHandler(async ({ type, id, extra }: any) => {
 });
 
 builder.defineMetaHandler(async ({ type, id }: any) => {
-  console.log(`[Crunch] \uD83D\uDFE2 Meta Request: type=${type}, id=${id}`);
+  console.log(`[Crunch] 🟢 Meta Request: type=${type}, id=${id}`);
   if (type === "music" && id.startsWith("sc:")) {
     const trackId = id.split(":")[1];
-    console.log(`[Crunch] \uD83D\uDD0D Fetching metadata for SoundCloud track ID: ${trackId}`);
+    console.log(`[Crunch] 🔍 Fetching metadata for SoundCloud track ID: ${trackId}`);
     const track = await getTrack(trackId);
     if (!track) {
-      console.log(`[Crunch] \u274C No track found for ID: ${trackId}`);
+      console.log(`[Crunch] ❌ No track found for ID: ${trackId}`);
       return { meta: null };
     }
-    console.log(`[Crunch] \u2728 Successfully fetched track metadata: "${track.title}"`);
-    console.log(`[Crunch] \uD83D\uDCCA Genre: ${track.genre}, Duration: ${track.duration}ms, Created: ${track.created_at}`);
+    console.log(`[Crunch] ✨ Successfully fetched track metadata: "${track.title}"`);
+    console.log(`[Crunch] 📊 Genre: ${track.genre}, Duration: ${track.duration}ms, Created: ${track.created_at}`);
     
     const meta = {
       id: id,
@@ -159,22 +159,22 @@ builder.defineMetaHandler(async ({ type, id }: any) => {
       released: track.created_at
     };
     
-    console.log(`[Crunch] \uD83D\uDCE1 Returning meta object to Stremio:`, JSON.stringify(meta, null, 2));
+    console.log(`[Crunch] 🛰️ Returning meta object to Stremio:`, JSON.stringify(meta, null, 2));
     return { meta };
   }
-  console.log(`[Crunch] \u26A0\uFE0F Meta request ignored - incompatible type/id: type=${type}, id=${id}`);
+  console.log(`[Crunch] ⚠️ Meta request ignored - incompatible type/id: type=${type}, id=${id}`);
   return { meta: null };
 });
 
 builder.defineStreamHandler(async ({ type, id }: any) => {
-  console.log(`[Crunch] \uD83D\uDFE2 Stream Request: type=${type}, id=${id}`);
+  console.log(`[Crunch] 🟢 Stream Request: type=${type}, id=${id}`);
   if (type === "music" && id.startsWith("sc:")) {
     const trackId = id.split(":")[1];
     const clientId = await getSCClientId();
 
     try {
       // 1. Fetch track info using the provided pattern
-      console.log(`[Crunch] \uD83D\uDD0D Fetching track info for ID: ${trackId}`);
+      console.log(`[Crunch] 🔍 Fetching track info for ID: ${trackId}`);
       const trackResponse = await axios.get(`https://api.soundcloud.com/tracks/${trackId}`, {
         headers: {
           "accept": "application/json; charset=utf-8",
@@ -184,7 +184,7 @@ builder.defineStreamHandler(async ({ type, id }: any) => {
       const track = trackResponse.data;
 
       // 2. Fetch stream URL using the provided pattern
-      console.log(`[Crunch] \uD83D\uDCE1 Fetching stream URL for ID: ${trackId}`);
+      console.log(`[Crunch] 📡 Fetching stream URL for ID: ${trackId}`);
       const streamResponse = await axios.get(`https://api.soundcloud.com/tracks/${trackId}/stream`, {
         headers: {
           "accept": "application/json; charset=utf-8",
@@ -198,7 +198,7 @@ builder.defineStreamHandler(async ({ type, id }: any) => {
       const directUrl = streamResponse.headers.location || streamResponse.data.http_mp3_128_url || streamResponse.data.url;
 
       if (directUrl) {
-        console.log(`[Crunch] \u2728 SUCCESS: Resolved direct stream URL: ${directUrl.substring(0, 100)}...`);
+        console.log(`[Crunch] ✨ SUCCESS: Resolved direct stream URL: ${directUrl.substring(0, 100)}...`);
         return {
           streams: [{
             name: "Crunch",
@@ -215,10 +215,10 @@ builder.defineStreamHandler(async ({ type, id }: any) => {
         };
       }
     } catch (err: any) {
-      console.error(`[Crunch] \uD83E\uDDE8 ERROR using official pattern:`, err.message || err);
+      console.error(`[Crunch] 🧨 ERROR using official pattern:`, err.message || err);
       
       // Fallback to internal V2 API resolution if official fails (v2 is often more resilient for scraped keys)
-      console.log(`[Crunch] \uD83D\uDD04 Falling back to V2 API resolution...`);
+      console.log(`[Crunch] 🔄 Falling back to V2 API resolution...`);
       const v2TrackResponse = await axios.get(`https://api-v2.soundcloud.com/tracks/${trackId}?client_id=${clientId}`);
       const transcodings = v2TrackResponse.data.media?.transcodings || [];
       const transcoding = transcodings.find((t: any) => t.format.protocol === "progressive" && t.format.mime_type.includes("mpeg")) || transcodings[0];
