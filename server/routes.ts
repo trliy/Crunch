@@ -53,7 +53,7 @@ const manifest = {
   logo: "https://files.catbox.moe/kftzeo.png", 
   icon: "https://files.catbox.moe/kftzeo.png",
   resources: ["catalog", "meta", "stream"],
-  types: ["Music"],
+  types: ["music"],
   catalogs: [
     {
       type: "music",
