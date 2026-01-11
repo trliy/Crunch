@@ -47,7 +47,7 @@ export async function registerRoutes(
       id: "org.crunch.addon",
       version: "1.0.0",
       name: "Crunch",
-      description: "SoundCloud Stremio Addon",
+      description: "Crunch is a lightweight Stremio addon for discovering and streaming user-uploaded music. It provides search, track metadata, and audio playback through a minimal install flow.",
       resources: ["catalog", "stream"],
       types: ["music"],
       catalogs: [

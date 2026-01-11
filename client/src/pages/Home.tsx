@@ -36,7 +36,7 @@ export default function Home() {
           <div className="h-2 w-24 bg-primary mx-auto mb-6" />
 
           <p className="text-xl md:text-2xl font-light text-muted-foreground max-w-2xl mx-auto">
-            Minimalist SoundCloud streaming for Stremio.
+            Crunch is a lightweight Stremio addon for discovering and streaming user-uploaded music. It provides search, track metadata, and audio playback through a minimal install flow.
           </p>
           
           {isLoading ? (
