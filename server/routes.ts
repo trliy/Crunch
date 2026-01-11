@@ -3,7 +3,11 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import axios from "axios";
 import { createRequire } from "module";
+import { fileURLToPath } from "url";
+import path from "path";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const require = createRequire(import.meta.url);
 const { addonBuilder, getRouter } = require("stremio-addon-sdk");
 const sckey = require("soundcloud-key-fetch");
