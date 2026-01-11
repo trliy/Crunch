@@ -1,6 +1,6 @@
 # Crunch - Music Streaming Stremio Addon
 
-![Crunch Logo]([https://files.catbox.moe/kftzeo.png])
+![Crunch Logo](https://files.catbox.moe/kftzeo.png)
 
 Crunch is a lightweight Stremio addon that enables users to discover and stream user-uploaded music content from SoundCloud.
 
